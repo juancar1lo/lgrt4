@@ -10,4 +10,4 @@ parámetros.
 El tercer módulo es un demostrador de fórmulas por el método de reducción al absurdo,
 admitiendo hasta seis variables y los mismos conectores lógicos.
 El cuarto módulo es un demostrador de Deducción Natural, todavía en construcción, 
-pero que se incorporará pronto en una prñoxima versión.
+pero que se incorporará pronto en una próxima versión.
