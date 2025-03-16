@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Reducción al Absurdo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <!-- Incluir html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Selector de idioma -->
+        <div class="language-selector">
+            <select id="language">
+                <option value="es">Español</option>
+                <option value="eu">Euskera</option>
+            </select>
+        </div>
+        <header>
+            <h1 id="title">Método de Reducción al Absurdo</h1>
+        </header>
+
+        <!-- Barra de herramientas con dos filas -->
+        <div class="toolbar">
+            <!-- Primera fila: Proposiciones -->
+            <div class="toolbar-row proposition-row">
+                <button type="button" class="symbol-button" data-symbol="p">p</button>
+                <button type="button" class="symbol-button" data-symbol="q">q</button>
+                <button type="button" class="symbol-button" data-symbol="r">r</button>
+                <button type="button" class="symbol-button" data-symbol="s">s</button>
+                <button type="button" class="symbol-button" data-symbol="t">t</button>
+                <button type="button" class="symbol-button" data-symbol="u">u</button>
+            </div>
+            <!-- Segunda fila: Conectores lógicos y paréntesis -->
+            <div class="toolbar-row logic-row">
+                <button type="button" class="symbol-button" data-symbol="¬">¬</button>
+                <button type="button" class="symbol-button" data-symbol="∧">∧</button>
+                <button type="button" class="symbol-button" data-symbol="∨">∨</button>
+                <button type="button" class="symbol-button" data-symbol="→">→</button>
+                <button type="button" class="symbol-button" data-symbol="↔">↔</button>
+                <button type="button" class="symbol-button" data-symbol="(">(</button>
+                <button type="button" class="symbol-button" data-symbol=")">)</button>
+            </div>
+        </div>
+
+        <main>
+            <div class="input-group">
+                <label for="formulaInput" id="inputLabel">Ingresa la fórmula</label>
+                <input type="text" id="formulaInput" placeholder="Ej: ((p→¬q)∧q)→¬p">
+            </div>
+
+            <!-- Grupo de botones: Resolver, Limpiar y Guardar como PDF -->
+            <div class="button-group">
+                <button id="solveButton">Resolver</button>
+                <button id="clearButton">Limpiar</button>
+                <button id="pdfButton">Guardar como PDF</button>
+            </div>
+
+            <div class="result" id="result"></div>
+        </main>
+
+        <footer>
+            <p>LogicArte v4.0 © 2025 [Juan Carlos López San Joaquín]. Licenciado bajo la <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">GNU AGPL v3</a>.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

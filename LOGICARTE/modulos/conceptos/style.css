@@ -1,0 +1,224 @@
+/* Estilo general del cuerpo y fondo gris claro */
+
+body {
+    background-color: #d9d9d9;
+    /* Gris claro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Contenedor principal */
+
+.main-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #d9d9d9;
+    /* Gris claro */
+    border-radius: 10px;
+}
+
+
+/* Selector de idioma (centrado) */
+
+.language-selector {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.language-selector select {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #e2f0d9;
+    border: 2px solid #096f46;
+    cursor: pointer;
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: #3d8047;
+}
+
+
+/* Título */
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+
+/* Contenedores de conceptos */
+
+.concept-container {
+    margin-bottom: 15px;
+}
+
+
+/* Botones interactivos */
+
+.concept-button {
+    background-color: #c0c0c0;
+    /* Gris más oscuro */
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    /* Centra el texto horizontalmente */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.concept-button:hover {
+    background-color: #a9a9a9;
+    /* Gris aún más oscuro al pasar el ratón */
+    transform: scale(1.02);
+    /* Ligera animación de escala */
+}
+
+
+/* Contenido desplegable */
+
+.concept-content {
+    display: none;
+    /* Oculto por defecto */
+    padding: 15px;
+    background-color: #ffffff;
+    /* Fondo blanco */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    animation: slideDown 0.4s ease;
+    /* Animación al desplegar */
+}
+
+
+/* Animación de despliegue */
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding: 0 15px;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        /* Ajustado para contenido más largo */
+        padding: 15px;
+    }
+}
+
+
+/* Estilo para las tablas */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+/* Pie de página */
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+footer a {
+    color: #096f46;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilos para los ejercicios de formalización */
+
+.ejercicios-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.ejercicio {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+}
+
+.ejercicio p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ejercicio input,
+.ejercicio select {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.ejercicio button {
+    padding: 5px 10px;
+    background-color: #666666;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ejercicio button:hover {
+    background-color: #555555;
+}
+
+.ejercicio span {
+    margin-top: 10px;
+    font-weight: bold;
+    display: block;
+}
+
+.symbol-toolbar {
+    margin-bottom: 10px;
+}
+
+.symbol-toolbar button {
+    padding: 5px;
+    margin-right: 5px;
+    background-color: #888888;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.symbol-toolbar button:hover {
+    background-color: #777777;
+}

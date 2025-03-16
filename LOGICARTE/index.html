@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicArte</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        /* Estilos para el modal de ayuda */
+        
+        #helpModal {
+            display: none;
+            /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        #helpModal .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        #helpModal .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+        
+        #helpModal .close:hover {
+            color: #000;
+        }
+        /* Estilos para el contenido de ayuda */
+        
+        .help-content h2 {
+            color: #3d8047;
+        }
+        
+        .help-content p,
+        .help-content ul {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .help-content ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        /* Estilos para el enlace de Ayuda, discreto y subrayado */
+        
+        .help-link {
+            margin-top: 5px;
+            text-align: left;
+        }
+        
+        .help-link a {
+            font-size: 0.9em;
+            text-decoration: underline;
+            color: #3d8047;
+            cursor: pointer;
+        }
+        
+        .help-link a:hover {
+            color: #318c4e;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor de fondo para símbolos -->
+    <div id="background-symbols"></div>
+
+    <div class="container">
+        <!-- Selector de idioma y enlace de ayuda -->
+        <div class="language-selector">
+            <select id="language">
+                <option value="es">Español</option>
+                <option value="eu">Euskera</option>
+            </select>
+            <!-- Enlace discreto para abrir la ayuda -->
+            <div class="help-link">
+                <a id="linkAyuda" onclick="mostrarAyuda()">Ayuda</a>
+            </div>
+        </div>
+        <h1 id="title">LOGICARTE</h1>
+        <p id="subtitle">HERRAMIENTAS PARA APRENDER LÓGICA PROPOSICIONAL</p>
+        <div class="herramientas">
+            <div class="herramienta formalizar">
+                <!-- Enlazamos a la página de "Conceptos y Formalización" usando una ruta relativa -->
+                <button id="btnFormalizar" onclick="abrirHerramienta('modulos/conceptos/index.html')">Conceptos y Formalización</button>
+            </div>
+            <div class="herramienta calculadora">
+                <button id="btnCalculadora" onclick="abrirHerramienta('modulos/tablas/index.html')">Calculadora de Tablas de Verdad</button>
+            </div>
+            <div class="herramienta demostrador">
+                <button id="btnDemostrador" onclick="abrirHerramienta('modulos/reduccion/index.html')">Demostrador por Reducción al Absurdo</button>
+            </div>
+            <div class="herramienta deduccion">
+                <button id="btnDeduccion" onclick="abrirHerramienta('modulos/deduccion/index.html')">Deducción Natural</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Ayuda -->
+    <div id="helpModal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarAyuda()">&times;</span>
+            <!-- Contenido de Ayuda en Español -->
+            <div id="help-es" class="help-content">
+                <h2>¿Qué es LogicArte?</h2>
+                <p>
+                    LogicArte es una aplicación educativa para aprender lógica proposicional de forma interactiva. Con ella podrás:
+                </p>
+                <ul>
+                    <li><strong>Conceptos y Formalización:</strong> Comprender los fundamentos de la lógica y formalizar argumentos.</li>
+                    <li><strong>Calculadora de Tablas de Verdad:</strong> Generar tablas de verdad para analizar expresiones lógicas, identificando tautologías, contradicciones e indeterminaciones.</li>
+                    <li><strong>Demostrador por Reducción al Absurdo:</strong> Visualizar el proceso de demostración de fórmulas lógicas mediante la reducción al absurdo.</li>
+                    <li><strong>Deducción Natural:</strong> (Próximamente) Practicar deducción natural mediante árboles de deducción.</li>
+                </ul>
+            </div>
+            <!-- Contenido de Ayuda en Euskera -->
+            <div id="help-eu" class="help-content" style="display:none;">
+                <h2>Zer da LogicArte?</h2>
+                <p>
+                    LogicArte logika proposizionala modu interaktiboan ikasteko ikasmen aplikazio bat da. Honek honako hauek eskaintzen dizkizu:
+                </p>
+                <ul>
+                    <li><strong>Kontzeptuak eta Formalizazioa:</strong> Logikaren oinarrizko kontzeptuak ulertu eta argumentuak formalizatu.</li>
+                    <li><strong>Egia-Taulen Kalkulagailua:</strong> Adierazpen logikoentzako egia-taulak sortu eta aztertu, tautologia, kontraesana eta indeterminazioa identifikatuz.</li>
+                    <li><strong>Absurdurako Erredukzioaren Demostratzailea:</strong> Adierazpen logikoak absurdurako erredukzioaren bidez nola frogatzen diren bisualizatu.</li>
+                    <li><strong>Dedukzio Naturala:</strong> (Laster) Dedukzio naturala praktikatu, dedukzio zuhaitzak sortuz.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página con aviso de licencia -->
+    <footer>
+        <p>LogicArte v4.0 © 2025 [Juan Carlos López San Joaquín]. Licenciado bajo la <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">GNU AGPL v3</a>.</p>
+    </footer>
+
+    <script>
+        // Traducciones
+        const translations = {
+            es: {
+                title: "LOGICARTE",
+                subtitle: "HERRAMIENTAS PARA APRENDER LÓGICA PROPOSICIONAL",
+                formalizar: "Conceptos y Formalización",
+                calculadora: "Calculadora de Tablas de Verdad",
+                demostrador: "Demostrador por Reducción al Absurdo",
+                deduccion: "Deducción Natural",
+                ayuda: "Ayuda"
+            },
+            eu: {
+                title: "LOGICARTE",
+                subtitle: "LOGIKA PROPOSIZIONALA IKASTEKO TRESNAK",
+                formalizar: "Kontzeptuak eta Formalizazioa",
+                calculadora: "Egia-Taulen Kalkulagailua",
+                demostrador: "Absurdurako Erredukzioaren Demostratzailea",
+                deduccion: "Dedukzio Naturala",
+                ayuda: "Laguntza"
+            }
+        };
+
+        // Actualizar idioma
+        function updateLanguage(lang) {
+            document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('subtitle').textContent = translations[lang].subtitle;
+            document.getElementById('btnFormalizar').textContent = translations[lang].formalizar;
+            document.getElementById('btnCalculadora').textContent = translations[lang].calculadora;
+            document.getElementById('btnDemostrador').textContent = translations[lang].demostrador;
+            document.getElementById('btnDeduccion').textContent = translations[lang].deduccion;
+            // Actualizar el enlace de ayuda
+            document.getElementById('linkAyuda').textContent = translations[lang].ayuda;
+            localStorage.setItem('selectedLanguage', lang);
+            // Actualizar contenido de ayuda según idioma
+            if (lang === "es") {
+                document.getElementById("help-es").style.display = "block";
+                document.getElementById("help-eu").style.display = "none";
+            } else {
+                document.getElementById("help-es").style.display = "none";
+                document.getElementById("help-eu").style.display = "block";
+            }
+        }
+
+        // Cargar idioma guardado o español por defecto
+        window.onload = function() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'es';
+            document.getElementById('language').value = savedLang;
+            updateLanguage(savedLang);
+            generateSymbols(); // Generar símbolos al cargar la página
+        };
+
+        // Evento del selector de idioma
+        document.getElementById('language').addEventListener('change', function() {
+            updateLanguage(this.value);
+        });
+
+        // Abrir herramientas en nuevas pestañas
+        function abrirHerramienta(url) {
+            window.open(url, '_blank');
+        }
+
+        // Generar símbolos de fondo
+        const symbols = ['∧', '∨', '¬', '→', '↔', 'P', 'Q', 'R', 'S', 'T'];
+
+        function createSymbol() {
+            const symbolDiv = document.createElement('div');
+            symbolDiv.classList.add('symbol');
+            symbolDiv.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            symbolDiv.style.left = `${left}%`;
+            symbolDiv.style.top = `${top}%`;
+            const rotation = Math.random() * 360;
+            symbolDiv.style.transform = `rotate(${rotation}deg)`;
+            const duration = 10 + Math.random() * 20;
+            const delay = Math.random() * 5;
+            symbolDiv.style.animationDuration = `${duration}s`;
+            symbolDiv.style.animationDelay = `${delay}s`;
+            return symbolDiv;
+        }
+
+        function generateSymbols() {
+            const background = document.getElementById('background-symbols');
+            for (let i = 0; i < 20; i++) {
+                background.appendChild(createSymbol());
+            }
+        }
+
+        // Funciones para mostrar y cerrar el modal de ayuda
+        function mostrarAyuda() {
+            document.getElementById("helpModal").style.display = "block";
+        }
+
+        function cerrarAyuda() {
+            document.getElementById("helpModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+/* General */
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #d9d9d9, #95c983, #c98383, #a983c9);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    position: relative;
+    /* Asegura que esté delante del fondo */
+    z-index: 1;
+    /* Coloca el contenido principal sobre los símbolos */
+}
+
+h1#title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p#subtitle {
+    font-size: 1.5em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+
+/* Selector de idioma */
+
+.language-selector {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.language-selector select {
+    width: 85px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 2px solid #096f46;
+    background-color: #e2f0d9;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: #3d8047;
+}
+
+
+/* Herramientas */
+
+.herramientas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.herramienta {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.herramienta button {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #ede7e7;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    width: 100%;
+}
+
+.herramienta button:hover {
+    transform: scale(1.05);
+}
+
+.herramienta button:active {
+    transform: scale(0.95);
+}
+
+
+/* Colores específicos por herramienta */
+
+.formalizar {
+    background-color: #d9d9d9;
+}
+
+.formalizar button {
+    background-color: #666666;
+}
+
+.formalizar button:hover {
+    background-color: #555555;
+}
+
+.calculadora {
+    background-color: #95c983;
+}
+
+.calculadora button {
+    background-color: #3d8047;
+}
+
+.calculadora button:hover {
+    background-color: #318c4e;
+}
+
+.demostrador {
+    background-color: #c98383;
+}
+
+.demostrador button {
+    background-color: #944e4e;
+}
+
+.demostrador button:hover {
+    background-color: #803d3d;
+}
+
+.deduccion {
+    background-color: #a983c9;
+}
+
+.deduccion button {
+    background-color: #6f4e94;
+}
+
+.deduccion button:hover {
+    background-color: #5c3d80;
+}
+
+
+/* Footer */
+
+footer {
+    margin-top: auto;
+    padding: 10px;
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    /* Asegura que esté delante del fondo */
+    z-index: 1;
+    /* Coloca el footer sobre los símbolos */
+}
+
+footer a {
+    color: #096f46;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilo del contenedor de fondo */
+
+#background-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Detrás del contenido */
+    pointer-events: none;
+    /* No interfiere con clics */
+}
+
+
+/* Estilo de los símbolos */
+
+.symbol {
+    position: absolute;
+    font-size: 3em;
+    color: #3c3b3b;
+    /* Color sutil que combina con el diseño */
+    opacity: 0.4;
+    /* Baja opacidad para no distraer */
+    animation: rotateSymbol 6s infinite linear;
+    /* Animación por defecto */
+}
+
+
+/* Animación de rotación */
+
+@keyframes rotateSymbol {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

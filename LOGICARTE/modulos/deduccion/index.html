@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicArte - Deducción</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="container deduccion">
+        <!-- Selector de idioma -->
+        <div class="language-selector">
+            <select id="language">
+                <option value="es">Español</option>
+                <option value="eu">Euskera</option>
+            </select>
+        </div>
+        <h1 id="title">Deducción Natural</h1>
+        <p id="subtitle">EN CONSTRUCCIÓN</p>
+        <!-- Aquí irá el contenido del módulo de deducción -->
+    </div>
+
+    <script>
+        // Traducciones para este módulo
+        const translations = {
+            es: {
+                title: "Deducción Natural"
+            },
+            eu: {
+                title: "Dedukzio Naturala"
+            }
+        };
+
+        // Actualizar idioma
+        function updateLanguage(lang) {
+            document.getElementById('title').textContent = translations[lang].title;
+            localStorage.setItem('selectedLanguage', lang); // Guardar idioma en localStorage
+        }
+
+        // Cargar idioma guardado o usar español por defecto al abrir
+        window.onload = function() {
+            const savedLang = localStorage.getItem('selectedLanguage') || 'es';
+            document.getElementById('language').value = savedLang;
+            updateLanguage(savedLang);
+        };
+
+        // Evento del selector
+        document.getElementById('language').addEventListener('change', function() {
+            updateLanguage(this.value);
+        });
+    </script>
+</body>
+
+</html>

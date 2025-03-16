@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos y Formalización - LogicArte</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <!-- Estilos adicionales para animaciones y botón de borrar avisos -->
+    <style>
+        /* Los containers se muestran siempre en block, pero se ocultan mediante max-height y opacidad */
+        
+        .concept-content {
+            display: block !important;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            padding: 0 15px;
+        }
+        
+        .concept-content.open {
+            opacity: 1;
+            padding: 15px;
+        }
+        /* Botón para borrar avisos */
+        
+        .clear-feedback-button {
+            background-color: transparent;
+            border: 1px solid #ccc;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        
+        .clear-feedback-button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Selector de idioma (centrado) -->
+        <div class="language-selector">
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="es">Español</option>
+                <option value="eu">Euskera</option>
+            </select>
+        </div>
+
+        <!-- Título del módulo -->
+        <h1 id="main-title-es">Conceptos y Formalización</h1>
+        <h1 id="main-title-eu" style="display: none;">Kontzeptuak eta Formalizazioa</h1>
+
+        <!-- Contenedor 1: ¿Por qué lógica? / Zergatik logika? -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('por-que-logica')" aria-expanded="false">
+                <span id="button-por-que-logica-es">¿Por qué lógica?</span>
+                <span id="button-por-que-logica-eu" style="display: none;">Zergatik logika?</span>
+            </button>
+            <div id="por-que-logica" class="concept-content">
+                <p id="por-que-logica-text-es">
+                    La lógica es la base del pensamiento crítico y la resolución de problemas. Nos permite analizar argumentos, identificar falacias y tomar decisiones informadas. En un mundo lleno de información, la lógica es una herramienta esencial para discernir la verdad
+                    y construir razonamientos sólidos. ¡Aprender lógica es aprender a pensar con claridad!
+                </p>
+                <p id="por-que-logica-text-eu" style="display: none;">
+                    Logika pentsamendu kritikoaren eta arazoak konpontzearen oinarria da. Argumentuak aztertzen, falaziak identifikatzen eta erabaki informatuak hartzen laguntzen digu. Informazioz betetako mundu honetan, logika ezinbesteko tresna da egia bereizteko eta arrazoibide
+                    sendoak eraikitzeko. Logika ikastea argi pentsatzen ikastea da!
+                </p>
+            </div>
+        </div>
+
+        <!-- Contenedor 2: Proposición / Proposizioa -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('proposicion')" aria-expanded="false">
+                <span id="button-proposicion-es">Proposición</span>
+                <span id="button-proposicion-eu" style="display: none;">Proposizioa</span>
+            </button>
+            <div id="proposicion" class="concept-content">
+                <p id="proposicion-text-es">
+                    Una proposición es una afirmación que puede ser verdadera o falsa, pero no ambas a la vez. En lógica proposicional se representan con variables como <strong>p</strong>, <strong>q</strong>, etc. Por ejemplo, "Está lloviendo" (<strong>p</strong>)
+                    es una proposición cuyo valor depende de la realidad, mientras que "2 + 2 = 5" (<strong>q</strong>) es falsa siempre.
+                </p>
+                <p id="proposicion-text-eu" style="display: none;">
+                    Proposizio bat egiazkoa edo gezurrezkoa izan daitekeen adierazpena da, baina ez biak aldi berean. Logika proposizionalean se representan con variables como <strong>p</strong>, <strong>q</strong> eta abar. Adibidez, "Euritsua dago"
+                    (
+                    <strong>p</strong>) proposizio bat da, bere balioa errealitatearen araberakoa, eta "2 + 2 = 5" (<strong>q</strong>) beti faltsua da.
+                </p>
+            </div>
+        </div>
+
+        <!-- Contenedor 3: Símbolos Lógicos / Logika Sinboloak -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('simbolos-logicos')" aria-expanded="false">
+                <span id="button-simbolos-logicos-es">Símbolos Lógicos</span>
+                <span id="button-simbolos-logicos-eu" style="display: none;">Logika Sinboloak</span>
+            </button>
+            <div id="simbolos-logicos" class="concept-content">
+                <div id="simbolos-logicos-es">
+                    <p>Los símbolos lógicos son la base de la lógica proposicional. A continuación, se presentan los operadores más comunes:</p>
+                    <table>
+                        <tr>
+                            <th>Símbolo</th>
+                            <th>Nombre</th>
+                            <th>Explicación</th>
+                        </tr>
+                        <tr>
+                            <td>∧</td>
+                            <td>Conjunción</td>
+                            <td>"Y" - Verdadero si ambos operandos son verdaderos.</td>
+                        </tr>
+                        <tr>
+                            <td>∨</td>
+                            <td>Disyunción</td>
+                            <td>"O" - Verdadero si al menos uno de los operandos es verdadero.</td>
+                        </tr>
+                        <tr>
+                            <td>¬</td>
+                            <td>Negación</td>
+                            <td>"No" - Invierte el valor de verdad del operando.</td>
+                        </tr>
+                        <tr>
+                            <td>→</td>
+                            <td>Implicación</td>
+                            <td>"Si..., entonces..." - Falso solo si el antecedente es verdadero y el consecuente es falso.</td>
+                        </tr>
+                        <tr>
+                            <td>↔</td>
+                            <td>Bicondicional</td>
+                            <td>"Si, y solo si..." - Verdadero si ambos operandos tienen el mismo valor de verdad.</td>
+                        </tr>
+                        <tr>
+                            <td>⊕</td>
+                            <td>Disyunción Exclusiva</td>
+                            <td>"O exclusivo" - Verdadero si exactamente uno de los operandos es verdadero.</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="simbolos-logicos-eu" style="display: none;">
+                    <p>Logika sinboloak logika proposizionalaren oinarria dira. Jarraian, eragile ohikoenak aurkezten dira:</p>
+                    <table>
+                        <tr>
+                            <th>Sinboloa</th>
+                            <th>Izena</th>
+                            <th>Azalpena</th>
+                        </tr>
+                        <tr>
+                            <td>∧</td>
+                            <td>Konjuntzioa</td>
+                            <td>"Eta" - Bi operanduak egiazkoak badira bakarrik egiazkoa.</td>
+                        </tr>
+                        <tr>
+                            <td>∨</td>
+                            <td>Disjuntzioa</td>
+                            <td>"Edo" - Gutxienez operandu bat egiazkoa bada egiazkoa.</td>
+                        </tr>
+                        <tr>
+                            <td>¬</td>
+                            <td>Ezeztapena</td>
+                            <td>"Ez" - Operanduaren egia-balioa alderantzikatzen du.</td>
+                        </tr>
+                        <tr>
+                            <td>→</td>
+                            <td>Inplikazioa</td>
+                            <td>"Bada..., orduan..." - Faltsua soilik aurrekaria egiazkoa eta ondorioa faltsua bada.</td>
+                        </tr>
+                        <tr>
+                            <td>↔</td>
+                            <td>Bikondizionala</td>
+                            <td>"Bada, eta soilik bada..." - Bi operanduek egia-balio bera badute egiazkoa.</td>
+                        </tr>
+                        <tr>
+                            <td>⊕</td>
+                            <td>Disjuntzio Esklusiboa</td>
+                            <td>"Edo esklusiboa" - Operandu bat bakarrik egiazkoa bada egiazkoa.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 4: Forma Lógica y Consecuencia Lógica / Forma Logikoa eta Ondorio Logikoa -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('forma-logica')" aria-expanded="false">
+                <span id="button-forma-logica-es">Forma Lógica y Consecuencia Lógica</span>
+                <span id="button-forma-logica-eu" style="display: none;">Forma Logikoa eta Ondorio Logikoa</span>
+            </button>
+            <div id="forma-logica" class="concept-content">
+                <div id="forma-logica-es">
+                    <h3>Forma Lógica</h3>
+                    <p>La forma lógica es la estructura abstracta de un argumento, independientemente de su contenido específico. Por ejemplo, "Si p, entonces q. p. Por lo tanto, q." es una forma válida (modus ponens), sin importar si p es "llueve" o "el
+                        gato maúlla". En cambio, el contenido son los significados concretos de las proposiciones.</p>
+                    <br>
+                    <h3>Consecuencia Lógica</h3>
+                    <p>La consecuencia lógica ocurre cuando, dada la forma, si las premisas son verdaderas, la conclusión debe serlo. Ejemplo: Premisa 1: "Si llueve, entonces el suelo se moja" (p→q). Premisa 2: "Llueve" (p). Conclusión: "El suelo se moja"
+                        (q). Esto es válido por su forma, no por el clima real.</p>
+                </div>
+                <div id="forma-logica-eu" style="display: none;">
+                    <h3>Forma Logikoa</h3>
+                    <p>Forma logikoa argumentu baten egitura abstraktua da, bere eduki espezifikotik independentea. Adibidez, "p bada, orduan q. p. Beraz, q." forma baliozkoa da (modus ponens), p "euritsua dago" edo "katua miauka egiten du" den ala ez kontuan
+                        hartu gabe. Aldiz, edukia proposizioen esanahi zehatzak dira.</p>
+                    <br>
+                    <h3>Ondorio Logikoa</h3>
+                    <p>Ondorio logikoa gertatzen da, formari esker, premiak egiazkoak badira, ondorioa ere egiazkoa izan behar badu. Adibidea: 1. Premisa: "Euritsua bada, orduan lurra bustitzen da" (p→q). 2. Premisa: "Euritsua dago" (p). Ondorioa: "Lurra
+                        bustitzen da" (q). Hau baliozkoa da bere formagatik, ez eguraldiagatik.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 5: Verdad y Validez / Egia eta Baliozkotasuna -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('verdad-validez')" aria-expanded="false">
+                <span id="button-verdad-validez-es">Verdad y Validez</span>
+                <span id="button-verdad-validez-eu" style="display: none;">Egia eta Baliozkotasuna</span>
+            </button>
+            <div id="verdad-validez" class="concept-content">
+                <div id="verdad-validez-es">
+                    <h3>Verdad</h3>
+                    <p>La verdad es el valor de una proposición: verdadera o falsa según la realidad. Ejemplo: "El sol brilla" es verdadera si hay sol, falsa si está nublado.</p>
+                    <br>
+                    <h3>Validez</h3>
+                    <p>La validez es la propiedad de un argumento cuya forma asegura que, si las premisas son verdaderas, la conclusión lo es. Ejemplo: "Todos los pájaros vuelan. Pepito es un pájaro. Luego, Pepito vuela" es válido por su forma, pero falso
+                        si Pepito es un pingüino.</p>
+                </div>
+                <div id="verdad-validez-eu" style="display: none;">
+                    <h3>Egia</h3>
+                    <p>Egia proposizio baten balioa da: egiazkoa edo faltsua errealitatearen arabera. Adibidez: "Eguzkia distira egiten du" egiazkoa da eguzkia badago, faltsua lainotuta badago.</p>
+                    <br>
+                    <h3>Baliozkotasuna</h3>
+                    <p>Baliozkotasuna argumentu baten propietatea da, bere formak ziurtatzen duela premiak egiazkoak badira, ondorioa ere egiazkoa dela. Adibidez: "Hegazti guztiek hegan egiten dute. Pepito hegaztia da. Beraz, Pepitok hegan egiten du" baliozkoa
+                        da bere formagatik, baina faltsua da Pepito pinguinoa bada.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 6: Formalización / Formalizazioa -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('formalizacion')" aria-expanded="false">
+                <span id="button-formalizacion-es">Formalización</span>
+                <span id="button-formalizacion-eu" style="display: none;">Formalizazioa</span>
+            </button>
+            <div id="formalizacion" class="concept-content">
+                <div id="formalizacion-es">
+                    <p>La formalización es el proceso de traducir expresiones del lenguaje natural a símbolos lógicos para analizar su estructura. Ejemplo: "Si María estudia, entonces aprueba" se formaliza como <strong>p→q</strong>, donde p = "María estudia"
+                        y q = "María aprueba". Otro ejemplo: "Juan come y duerme" es <strong>p∧q</strong>, con p = "Juan come" y q = "Juan duerme". También, "No es cierto que Ana está triste" es <strong>¬p</strong>, donde p = "Ana está triste".</p>
+                </div>
+                <div id="formalizacion-eu" style="display: none;">
+                    <p>Formalizazioa hizkuntza naturalaren adierazpenak sinbolo logikoetara itzultzeko prozesua da, haien egitura aztertzeko. Adibidez: "Mariak ikasten badu, orduan gainditzen du" se formalizatzen da <strong>p→q</strong>, non p = "Mariak
+                        ikasten du" eta q = "Mariak gainditzen du". Beste adibide bat: "Juanek jaten du eta lo egiten du" da <strong>p∧q</strong>, non p = "Juanek jaten du" eta q = "Juanek lo egiten du". Gainera, "Ez da egia Ana triste dagoela" da <strong>¬p</strong>,
+                        non p = "Ana triste dago".</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 7: Tablas de Verdad / Egia Taulak -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('tablas-verdad')" aria-expanded="false">
+                <span id="button-tablas-verdad-es">Tablas de Verdad</span>
+                <span id="button-tablas-verdad-eu" style="display: none;">Egia Taulak</span>
+            </button>
+            <div id="tablas-verdad" class="concept-content">
+                <div id="tablas-verdad-es">
+                    <p>Las tablas de verdad muestran todas las posibles combinaciones de valores para las proposiciones y el resultado de los operadores lógicos. El número de filas se calcula con la fórmula <strong>2^n</strong>, donde <strong>n</strong>                        es el número de variables. Por ejemplo, para 2 variables hay 4 filas (2² = 4); para 3 variables, 8 filas (2³ = 8), etc.</p>
+                    <h4>Conjunción (∧)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P∧Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                    <h4>Disyunción (∨)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P∨Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                    <h4>Negación (¬)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>¬P</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                    <h4>Implicación (→)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P→Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                    <h4>Bicondicional (↔)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P↔Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                    <h4>Disyunción Exclusiva (⊕)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P⊕Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="tablas-verdad-eu" style="display: none;">
+                    <p>Egia taulak proposizioen egia-balio guztiak eta eragile logikoen emaitzak erakusten dituzte. Taula honetan, aldagai kopurua <strong>2^n</strong> formularekin kalkulatzen da, non <strong>n</strong> proposizio-aldagaien kopurua den.
+                        Adibidez, 2 aldagairentzat, 4 errenkada daude (2² = 4); 3 aldagairentzat, 8 errenkada daude (2³ = 8), eta abar.</p>
+                    <h4>Konjuntzioa (∧)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P∧Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                    <h4>Disjuntzioa (∨)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P∨Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                    <h4>Ezeztapena (¬)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>¬P</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                    <h4>Inplikazioa (→)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P→Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                    <h4>Bikondizionala (↔)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P↔Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                    <h4>Disjuntzio Esklusiboa (⊕)</h4>
+                    <table>
+                        <tr>
+                            <th>P</th>
+                            <th>Q</th>
+                            <th>P⊕Q</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 8: Tipos de Fórmulas / Formulen Mota -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('tipos-formulas')" aria-expanded="false">
+                <span id="button-tipos-formulas-es">Tipos de Fórmulas</span>
+                <span id="button-tipos-formulas-eu" style="display: none;">Formulen Mota</span>
+            </button>
+            <div id="tipos-formulas" class="concept-content">
+                <div id="tipos-formulas-es">
+                    <p><strong>Tautología:</strong> Una tautología es una fórmula que resulta verdadera (su tabla de verdad es todo 1) para todas las asignaciones de valores de verdad a sus variables.</p>
+                    <p><strong>Contradicción:</strong> Una contradicción es una fórmula que resulta falsa (su tabla de verdad es todo 0) para todas las asignaciones de valores de verdad a sus variables.</p>
+                    <p><strong>Indeterminación:</strong> Una indeterminación es una fórmula que resulta en una combinación de 1 y 0, dependiendo de la asignación de valores a sus variables.</p>
+                </div>
+                <div id="tipos-formulas-eu" style="display: none;">
+                    <p><strong>Tautologia:</strong> Tautologia formula bat da, eta bere egia taula guztiz 1 diren balioak ematen ditu bere aldagai guztientzat.</p>
+                    <p><strong>Kontradikzioa:</strong> Kontradikzioa formula bat da, eta bere egia taula guztiz 0 diren balioak ematen ditu bere aldagai guztientzat.</p>
+                    <p><strong>Indeterminazioa:</strong> Indeterminazioa formula bat da, eta bere egia taulak 1 eta 0ren konbinazioa ematen du, aldagai esleipenaren arabera.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor 9: Ejercicios de Formalización / Formalizazio Ariketak -->
+        <div class="concept-container">
+            <button class="concept-button" onclick="toggleContent('ejercicios-formalizacion')" aria-expanded="false">
+                <span id="button-ejercicios-formalizacion-es">Ejercicios de Formalización</span>
+                <span id="button-ejercicios-formalizacion-eu" style="display: none;">Formalizazio Ariketak</span>
+            </button>
+            <div id="ejercicios-formalizacion" class="concept-content">
+                <div class="ejercicios-wrapper">
+                    <!-- Ejercicio 1: Conjunción -->
+                    <div class="ejercicio">
+                        <p id="ejercicio1-es">1. Formaliza: "María canta y Juan baila"</p>
+                        <p id="ejercicio1-eu" style="display: none;">1. Formalizatu: "Mariak abesten du eta Juanek dantzatzen du"</p>
+                        <input type="text" id="ejercicio1" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio1')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio1')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio1')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio1')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio1')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio1')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio1', 'p∧q', 'feedback-ejercicio1')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio1"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio1')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 2: Disyunción -->
+                    <div class="ejercicio">
+                        <p id="ejercicio2-es">2. Formaliza: "Llueve o hace sol"</p>
+                        <p id="ejercicio2-eu" style="display: none;">2. Formalizatu: "Euritsua dago edo eguzkia dago"</p>
+                        <input type="text" id="ejercicio2" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio2')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio2')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio2')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio2')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio2')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio2')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio2', 'p∨q', 'feedback-ejercicio2')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio2"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio2')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 3: Negación -->
+                    <div class="ejercicio">
+                        <p id="ejercicio3-es">3. Formaliza: "No es cierto que Ana estudie"</p>
+                        <p id="ejercicio3-eu" style="display: none;">3. Formalizatu: "Ez da egia Anak ikasten duela"</p>
+                        <input type="text" id="ejercicio3" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio3')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio3')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio3')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio3')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio3')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio3')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio3', '¬p', 'feedback-ejercicio3')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio3"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio3')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 4: Implicación -->
+                    <div class="ejercicio">
+                        <p id="ejercicio4-es">4. Formaliza: "Si Pedro corre, entonces llega temprano"</p>
+                        <p id="ejercicio4-eu" style="display: none;">4. Formalizatu: "Pedrok korrika egiten badu, orduan goiz iristen da"</p>
+                        <input type="text" id="ejercicio4" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio4')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio4')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio4')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio4')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio4')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio4')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio4', 'p→q', 'feedback-ejercicio4')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio4"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio4')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 5: Bicondicional -->
+                    <div class="ejercicio">
+                        <p id="ejercicio5-es">5. Formaliza: "El equipo gana si y solo si todos juegan bien"</p>
+                        <p id="ejercicio5-eu" style="display: none;">5. Formalizatu: "Taldeak irabazten du bada eta soilik bada denek ondo jokatzen badute"</p>
+                        <input type="text" id="ejercicio5" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio5')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio5')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio5')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio5')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio5')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio5')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio5', 'p↔q', 'feedback-ejercicio5')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio5"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio5')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 6: Disyunción Exclusiva -->
+                    <div class="ejercicio">
+                        <p id="ejercicio6-es">6. Formaliza: "Voy al cine o al teatro, pero no a ambos"</p>
+                        <p id="ejercicio6-eu" style="display: none;">6. Formalizatu: "Zinemara edo antzerkira noa, baina ez bietara"</p>
+                        <input type="text" id="ejercicio6" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio6')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio6')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio6')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio6')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio6')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio6')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio6', 'p⊕q', 'feedback-ejercicio6')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio6"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio6')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 7: Tipo Test (Conjunción) -->
+                    <div class="ejercicio">
+                        <p id="ejercicio7-es">7. Selecciona la formalización para: "Hace frío y nieva"</p>
+                        <p id="ejercicio7-eu" style="display: none;">7. Hautatu formalizazioa: "Hotza egiten du eta elurra ari du"</p>
+                        <select id="ejercicio7">
+                            <option value="">Selecciona una opción</option>
+                            <option value="p∧q">p∧q</option>
+                            <option value="p∨q">p∨q</option>
+                            <option value="p→q">p→q</option>
+                        </select>
+                        <button type="button" onclick="comprobarRespuestaTest('ejercicio7', 'p∧q', 'feedback-ejercicio7')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio7"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio7')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 8: Tipo Test (Implicación) -->
+                    <div class="ejercicio">
+                        <p id="ejercicio8-es">8. Selecciona la formalización para: "Si estudio, apruebo"</p>
+                        <p id="ejercicio8-eu" style="display: none;">8. Hautatu formalizazioa: "Ikasten badut, gainditzen dut"</p>
+                        <select id="ejercicio8">
+                            <option value="">Selecciona una opción</option>
+                            <option value="p∧q">p∧q</option>
+                            <option value="p→q">p→q</option>
+                            <option value="¬p">¬p</option>
+                        </select>
+                        <button type="button" onclick="comprobarRespuestaTest('ejercicio8', 'p→q', 'feedback-ejercicio8')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio8"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio8')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 9: Tipo Test (Disyunción Exclusiva) -->
+                    <div class="ejercicio">
+                        <p id="ejercicio9-es">9. Selecciona la formalización para: "Compro pan o leche, pero no ambos"</p>
+                        <p id="ejercicio9-eu" style="display: none;">9. Hautatu formalizazioa: "Ogia edo esnea erosten dut, baina ez biak"</p>
+                        <select id="ejercicio9">
+                            <option value="">Selecciona una opción</option>
+                            <option value="p∨q">p∨q</option>
+                            <option value="p⊕q">p⊕q</option>
+                            <option value="p∧q">p∧q</option>
+                        </select>
+                        <button type="button" onclick="comprobarRespuestaTest('ejercicio9', 'p⊕q', 'feedback-ejercicio9')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio9"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio9')">X</button>
+                    </div>
+
+                    <!-- Ejercicio 10: Entrada Libre (Combinado con Negación e Implicación) -->
+                    <div class="ejercicio">
+                        <p id="ejercicio10-es">10. Formaliza: "Si no llueve, entonces no salgo"</p>
+                        <p id="ejercicio10-eu" style="display: none;">10. Formalizatu: "Euritsua ez badago, orduan ez naiz irteten"</p>
+                        <input type="text" id="ejercicio10" placeholder="Escribe tu respuesta / Idatzi zure erantzuna">
+                        <div class="symbol-toolbar">
+                            <button onclick="insertSymbol('∧', 'ejercicio10')">∧</button>
+                            <button onclick="insertSymbol('∨', 'ejercicio10')">∨</button>
+                            <button onclick="insertSymbol('¬', 'ejercicio10')">¬</button>
+                            <button onclick="insertSymbol('→', 'ejercicio10')">→</button>
+                            <button onclick="insertSymbol('↔', 'ejercicio10')">↔</button>
+                            <button onclick="insertSymbol('⊕', 'ejercicio10')">⊕</button>
+                        </div>
+                        <button type="button" onclick="comprobarRespuesta('ejercicio10', '¬p→¬q', 'feedback-ejercicio10')">
+                            <span class="check-btn" data-es="Comprobar" data-eu="Egiaztatu">Comprobar</span>
+                        </button>
+                        <span id="feedback-ejercicio10"></span>
+                        <button type="button" class="clear-feedback-button" onclick="clearFeedback('feedback-ejercicio10')">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página con licencia -->
+    <footer>
+        <p id="footer-es" style="display: block;">
+            LogicArte v4.0 © 2025 [Juan Carlos López San Joaquín]. Licenciado bajo la <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">GNU AGPL v3</a>.
+        </p>
+        <p id="footer-eu" style="display: none;">
+            LogicArte v4.0 © 2025 [Juan Carlos López San Joaquín]. GNU AGPL v3 lizentziapean lizentziatua <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank">GNU AGPL v3</a>.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
